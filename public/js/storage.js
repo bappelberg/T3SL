@@ -1,4 +1,4 @@
-const API = "https://voters-dual-inspections-suburban.trycloudflare.com";
+const API = "https://patrick-sword-arc-category.trycloudflare.com";
 
 const Storage = {
   async getTechnicians() {
