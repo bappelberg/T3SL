@@ -53,11 +53,22 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
 
+    def send_cors_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "https://t3sl.vercel.app")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.send_cors_headers()
+        self.end_headers()
+
     def send_json(self, data, status=200):
         body = json.dumps(data).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", len(body))
+        self.send_cors_headers()
         self.end_headers()
         self.wfile.write(body)
 
@@ -166,6 +177,6 @@ class Handler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     init_db()
-    server = ThreadingHTTPServer(("", 8000), Handler)
-    print("T30SL körs på http://localhost:8000")
+    server = ThreadingHTTPServer(("", 3521), Handler)
+    print("T30SL körs på http://localhost:3521")
     server.serve_forever()
