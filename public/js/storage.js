@@ -1,4 +1,4 @@
-const API = "https://tech-anaheim-instrumental-mac.trycloudflare.com";
+const API = "https://voters-dual-inspections-suburban.trycloudflare.com";
 
 const Storage = {
   async getTechnicians() {
